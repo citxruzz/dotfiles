@@ -110,3 +110,6 @@ if [ -z "$SSH_AUTH_SOCK" ] ; then
     ssh-add ~/.ssh/id_ed25519
 fi
 
+#to move tmux to folder
+export TMUX_CONF_FILE=~/.config/tmux/tmux.conf
+
