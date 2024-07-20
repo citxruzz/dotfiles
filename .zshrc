@@ -104,12 +104,6 @@ alias ls="${aliases[ls]:-ls} -A"
 setopt glob_dots     # no special treatment for file names with a leading dot
 setopt no_auto_menu  # require an extra TAB press to open the completion menu
 
-# To start ssh agent for github
-if [ -z "$SSH_AUTH_SOCK" ] ; then
-    eval $(ssh-agent -s)
-    ssh-add ~/.ssh/id_ed25519
-fi
-
 #to move tmux to folder
 export TMUX_CONF_FILE=~/.config/tmux/tmux.conf
 
