@@ -107,3 +107,4 @@ setopt no_auto_menu  # require an extra TAB press to open the completion menu
 #to move tmux to folder
 export TMUX_CONF_FILE=~/.config/tmux/tmux.conf
 
+eval "$(zoxide init zsh)"

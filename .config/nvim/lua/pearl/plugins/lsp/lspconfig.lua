@@ -63,27 +63,6 @@ return {
 					capabilities = capabilities,
 				})
 			end,
-			["tsserver"] = function()
-				lspconfig["tsserver"].setup({
-					capabilities = capabilities,
-					filetypes = {
-						"typescript",
-						"javascript",
-						"javascriptreact",
-						"javascriptreact",
-						"typescript.tsx",
-						"javascript.jsx",
-					},
-				})
-			end,
-			["html"] = function()
-				lspconfig["html"].setup({
-					cmd = { "vscode-html-language-server", "--stdio" },
-					filetypes = { "html" },
-					settings = {},
-					capabilities = capabilities,
-				})
-			end,
 			["emmet_ls"] = function()
 				lspconfig["emmet_ls"].setup({
 					capabilities = capabilities,
