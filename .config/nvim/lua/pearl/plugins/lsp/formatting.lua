@@ -18,6 +18,7 @@ return {
 				markdown = { "prettier" },
 				cpp = { "clang-format" },
 				graphql = { "prettier" },
+				prisma = { "prettier" },
 				liquid = { "prettier" },
 				lua = { "stylua" },
 				python = { "isort", "black" },

@@ -1,7 +1,9 @@
 [user]
-	email = bunnyayush8543@gmail.com
-	name = ayush
+	email = ayushwasnothere@gmail.com
+	name = ayushwasnothere
 [init]
-	defaultBranch = master
+	defaultBranch = main
 [url "git@github.com:"]
 	insteadOf = https://github.com/
+[core]
+	editor = nvim

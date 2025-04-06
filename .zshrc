@@ -47,7 +47,6 @@ zstyle ':z4h:ssh:*' send-extra-files '~/.nanorc' '~/.env.zsh'
 # This doesn't do anything apart from cloning the repository and keeping it
 # up-to-date. Cloned files can be used after `z4h init`. This is just an
 # example. If you don't plan to use Oh My Zsh, delete this line.
-z4h install ohmyzsh/ohmyzsh || return
 
 # Install or update core components (fzf, zsh-autosuggestions, etc.) and
 # initialize Zsh. After this point console I/O is unavailable until Zsh
@@ -63,14 +62,15 @@ export GPG_TTY=$TTY
 export EDITOR='nvim'
 export GIT_EDITOR='nvim'
 
+
+
+
 # Source additional local files if they exist.
 z4h source ~/.env.zsh
 
 # Use additional Git repositories pulled in with `z4h install`.
 #
 # This is just an example that you should delete. It does nothing useful.
-z4h source ohmyzsh/ohmyzsh/lib/diagnostics.zsh  # source an individual file
-z4h load   ohmyzsh/ohmyzsh/plugins/emoji-clock  # load a plugin
 
 # Define key bindings.
 z4h bindkey z4h-backward-kill-word  Ctrl+Backspace     Ctrl+H
@@ -79,11 +79,11 @@ z4h bindkey z4h-backward-kill-zword Ctrl+Alt+Backspace
 z4h bindkey undo Ctrl+/ Shift+Tab  # undo the last command line change
 z4h bindkey redo Alt+/             # redo the last undone command line change
 
-z4h bindkey z4h-cd-back    Alt+Left   # cd into the previous directory
-z4h bindkey z4h-cd-forward Alt+Right  # cd into the next directory
-z4h bindkey z4h-cd-up      Alt+Up     # cd into the parent directory
-z4h bindkey z4h-cd-down    Alt+Down   # cd into a child directory
-
+# z4h bindkey z4h-cd-back    Alt+Left   # cd into the previous directory
+# z4h bindkey z4h-cd-forward Alt+Right  # cd into the next directory
+# z4h bindkey z4h-cd-up      Alt+Up     # cd into the parent directory
+# z4h bindkey z4h-cd-down    Alt+Down   # cd into a child directory
+#
 # Autoload functions.
 autoload -Uz zmv
 
@@ -96,6 +96,16 @@ compdef _directories md
 
 # Define aliases.
 alias tree='tree -a -I .git'
+alias ga='git add'
+alias gd='git rm --cached'
+alias gl="git log --online"
+alias gr="git reset"
+alias gc="git commit -m "
+alias gp="git push origin main"
+alias pn='pnpm'
+alias clr="clear"
+alias ani="ani-cli --skip -q 1080p"
+alias nv="nvim"
 
 # Add flags to existing aliases.
 alias ls="${aliases[ls]:-ls} -A"
@@ -107,4 +117,36 @@ setopt no_auto_menu  # require an extra TAB press to open the completion menu
 #to move tmux to folder
 export TMUX_CONF_FILE=~/.config/tmux/tmux.conf
 
-eval "$(zoxide init zsh)"
+eval "$(zoxide init --cmd cd zsh)"
+eval "$(thefuck --alias)"
+eval "$(thefuck --alias fk)"
+
+export PATH=$HOME/.npm-global/bin:$PATH
+
+# pnpm
+export PNPM_HOME="/home/pearl/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+# Add SSH keys (adjust the paths as needed)
+SSH_KEYS=(
+  "id_ed25519"
+  "id_ayush"
+)
+
+# Ensure SSH agent is running
+if [ -z "$SSH_AGENT_PID" ]; then
+  eval "$(ssh-agent -s)"
+  for key in "${SSH_KEYS[@]}"; do
+    ssh-add "/home/pearl/.ssh/$key"
+  done
+fi
+
+
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
