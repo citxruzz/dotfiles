@@ -4,6 +4,9 @@ return {
 	config = function()
 		local lint = require("lint")
 
+		local venv_python = vim.fn.getcwd() .. "/.venv/bin/pylint"
+		lint.linters.pylint.cmd = venv_python
+
 		lint.linters_by_ft = {
 			html = { "stylelint" },
 			css = { "stylelint" },
@@ -13,6 +16,7 @@ return {
 			typescriptreact = { "eslint_d" },
 			svelte = { "eslint_d" },
 			python = { "pylint" },
+			-- java = { "google_java_format" },
 			-- cpp = { "cpplint" },
 		}
 

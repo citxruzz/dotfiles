@@ -41,6 +41,7 @@ return {
 				"c",
 				"java",
 				"cpp",
+				"python",
 				"rust",
 			},
 			incremental_selection = {

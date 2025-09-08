@@ -13,6 +13,10 @@ keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move the line down" })
 keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move the line up" })
 
+-- Indent while keeping selection
+keymap.set("v", "<", "<gv", { desc = "Indent left and reselect" })
+keymap.set("v", ">", ">gv", { desc = "Indent right and reselect" })
+
 -- Diagnostic keymaps
 keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
 keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
@@ -48,7 +52,7 @@ keymap.set("v", "<leader>y", '"+y', { desc = "Yank to system clipboard" })
 keymap.set("n", "<leader>Y", '"+Y', { desc = "Yank from cursor-line to system clipboard" })
 
 --keymap for ease
-keymap.set("n", "<leader>va", "ggVG", { desc = "Select all" })
+keymap.set("n", "<leader>va", "GVgg", { desc = "Select all" })
 
 --basic auto command for highlight when yank
 vim.api.nvim_create_autocmd("TextYankPost", {
