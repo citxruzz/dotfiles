@@ -4,7 +4,7 @@ if not vim.loop.fs_stat(lazypath) then
 		"git",
 		"clone",
 		"--filter=blob:none",
-		"https://git@ayush/folke/lazy.nvim.git",
+		"git@ayush:folke/lazy.nvim.git",
 		"--branch=stable", -- latest stable release
 		lazypath,
 	})

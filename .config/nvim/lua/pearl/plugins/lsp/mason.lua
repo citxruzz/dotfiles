@@ -1,7 +1,7 @@
 return {
-	"williamboman/mason.nvim",
+	"mason-org/mason.nvim",
 	dependencies = {
-		"williamboman/mason-lspconfig.nvim",
+		"mason-org/mason-lspconfig.nvim",
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 		"neovim/nvim-lspconfig",
 	},
@@ -20,27 +20,11 @@ return {
 			},
 		})
 
-		mason_lspconfig.setup({
-			ensure_installed = {
-				"ts_ls",
-				"cssls",
-				"tailwindcss",
-				"lua_ls",
-				"pyright",
-				"clangd",
-				"rust_analyzer",
-			},
-		})
-
 		mason_tool_installer.setup({
 			ensure_installed = {
-				"prettier", -- prettier formatter
-				"stylua", -- lua formatter
-				"isort", -- python formatter
-				"black", -- python formatter
-				"pylint", -- python formatter
+				"prettier", -- formatter
+				"stylua",
 				"eslint_d",
-				"cpplint",
 			},
 		})
 	end,

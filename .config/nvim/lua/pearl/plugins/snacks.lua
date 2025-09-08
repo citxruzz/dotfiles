@@ -5,9 +5,7 @@ return {
 	opts = {
 		words = { enabled = true },
 		bigfile = { enabled = true },
-		dashboard = { enabled = true },
 		notifier = { enabled = true },
 		quickfile = { enabled = true },
-		scroll = { enabled = true },
 	},
 }
