@@ -16,3 +16,4 @@ function toggle_speed()
 end
 
 mp.add_key_binding("g", "toggle_speed", toggle_speed)
+

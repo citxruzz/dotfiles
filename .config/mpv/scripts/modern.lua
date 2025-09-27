@@ -2130,7 +2130,8 @@ mp.set_key_bindings({
     {'wheel_up',            function(e) process_event('wheel_up', 'press') end},
     {'wheel_down',          function(e) process_event('wheel_down', 'press') end},
     {'mbtn_left_dbl',       'ignore'},
-    {'mbtn_right_dbl',      'ignore'},
+    {'mbtn_right_dbl', 'ignore'},
+
 }, 'input', 'force')
 mp.enable_key_bindings('input')
 
