@@ -1,0 +1,88 @@
+configuration {
+    /* 1. Increased Search Parameters (Apps, Commands, Windows, Files) */
+    modi:                       "drun,run,window,filebrowser";
+    show-icons:                 true;
+    display-drun:               "";
+    display-run:                "";
+    display-window:             "";
+    display-filebrowser:        "";
+    drun-display-format:        "{name}";
+    hover-select:               true;
+    me-select-entry:            "";
+    me-accept-entry:            "MousePrimary";
+    matching:                   "fuzzy";
+    sorting-method:             "fzf";
+}
+
+* {
+    bg:                         #0a0a0ae6; /* Increased opacity slightly for better blur contrast */
+    fg:                         #d0d0d0;
+    fg-alt:                     #666666;
+    selected-bg:                #ffffff15; 
+    border-col:                 #ffffff10;
+    background-color:           transparent;
+    text-color:                 @fg;
+}
+
+window {
+    width:                      600px;
+    transparency:               "real";
+    background-color:           @bg;
+    border:                     1px;
+    border-color:               @border-col;
+    border-radius:              12px;
+    location:                   center;
+    anchor:                     center;
+    cursor:			pointer;
+}
+
+mainbox {
+    padding:                    24px;
+    /* 2. Keep the search bar visible even during errors */
+    children:                   [ "inputbar", "listview", "message" ];
+}
+
+inputbar {
+    padding:                    12px;
+    spacing:                    12px;
+    children:                   [ "prompt", "entry" ];
+    border:                     0px 0px 1px 0px;
+    border-color: @border-col;
+}
+
+entry {
+    placeholder:                "Search...";
+    placeholder-color:          @fg-alt;
+    vertical-align:             0.5;
+}
+
+listview {
+    columns:                    1;
+    lines:                      8;
+    spacing:                    0px; /* Flush look for selection */
+    margin:                     12px 0px 0px 0px;
+    fixed-height:               false;
+}
+
+element {
+    padding:                    12px;
+    background-color:           transparent; /* 3. No container background for unselected */
+    border-radius:              0px;         /* Reset radius */
+    spacing:                    15px;
+    cursor:			pointer;
+}
+
+element selected {
+    background-color:           @selected-bg;
+    border-radius:              0px;         /* 4. No round corners for selected one */
+    text-color:                 #ffffff;
+}
+
+/* 5. Graceful Error Display */
+error-message {
+    padding:                    15px;
+    border:                     1px;
+    border-color:               #ff555533;
+    background-color:           #ff555511;
+    text-color:                 #ff5555;
+}
