@@ -118,17 +118,10 @@ setopt no_auto_menu  # require an extra TAB press to open the completion menu
 export TMUX_CONF_FILE=~/.config/tmux/tmux.conf
 
 eval "$(zoxide init --cmd cd zsh)"
-eval "$(thefuck --alias)"
-eval "$(thefuck --alias fk)"
 
 export PATH=$HOME/.npm-global/bin:$PATH
 
 # pnpm
-export PNPM_HOME="/home/pearl/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
 # pnpm end
 
 # Add SSH keys (adjust the paths as needed)
@@ -137,30 +130,29 @@ SSH_KEYS=(
   "id_ayush"
 )
 
-# Ensure SSH agent is running
-if [ -z "$SSH_AGENT_PID" ]; then
-  eval "$(ssh-agent -s)"
-  for key in "${SSH_KEYS[@]}"; do
-    ssh-add "/home/pearl/.ssh/$key"
-  done
-fi
+# # Ensure SSH agent is running
+# if [ -z "$SSH_AGENT_PID" ]; then
+#   eval "$(ssh-agent -s)"
+#   for key in "${SSH_KEYS[@]}"; do
+#     ssh-add "/home/$USER/.ssh/$key"
+#   done
+# fi
 
 
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init - zsh)"
+
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+export QT_QPA_PLATFORM=xcb
 
 # bun completions
-[ -s "/home/pearl/.bun/_bun" ] && source "/home/pearl/.bun/_bun"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+[ -s "/home/$USER/.bun/_bun" ] && source "/home/lymn/.bun/_bun"
