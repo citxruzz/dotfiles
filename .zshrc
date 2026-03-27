@@ -154,5 +154,17 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 export QT_QPA_PLATFORM=xcb
 
-# bun completions
-[ -s "/home/$USER/.bun/_bun" ] && source "/home/lymn/.bun/_bun"
+
+if [[ $- == *i* && -z "$TMUX" ]]; then
+  echo "\n\n"
+  pokeget random --hide-name | sed 's/^/    /'
+  echo ""
+  fastfetch --pipe false
+  echo "\n\n"
+fi
+
+alias ff='echo "\n\n" && pokeget random --hide-name | sed "s/^/    /" && echo "" && fastfetch --pipe false && echo "\n\n"'
+
+eval "$(starship init zsh)"
+
+export QT_QPA_PLATFORMTHEME=qt6ct

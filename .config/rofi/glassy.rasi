@@ -1,88 +1,166 @@
 configuration {
-    /* 1. Increased Search Parameters (Apps, Commands, Windows, Files) */
     modi:                       "drun,run,window,filebrowser";
     show-icons:                 true;
-    display-drun:               "";
-    display-run:                "";
-    display-window:             "";
-    display-filebrowser:        "";
+    display-drun:               "󰀻  Apps";
+    display-run:                ">  Run";
+    display-window:             "󰖯  Windows";
+    display-filebrowser:        "󰉋  Files";
     drun-display-format:        "{name}";
     hover-select:               true;
     me-select-entry:            "";
     me-accept-entry:            "MousePrimary";
     matching:                   "fuzzy";
     sorting-method:             "fzf";
+    icon-theme:                 "Papirus";
+    steal-focus:                true;
 }
 
 * {
-    bg:                         #0a0a0ae6; /* Increased opacity slightly for better blur contrast */
-    fg:                         #d0d0d0;
-    fg-alt:                     #666666;
-    selected-bg:                #ffffff15; 
-    border-col:                 #ffffff10;
+    bg:                         #0a0a0af0;
+    bg-alt:                     #ffffff08;
+    fg:                         #e0e0e0;
+    fg-alt:                     #555555;
+    fg-dim:                     #888888;
+    accent:                     #79c0ff;
+    selected-bg:                #ffffff12;
+    border-col:                 #ffffff14;
     background-color:           transparent;
     text-color:                 @fg;
+    font:                       "JetBrainsMono Nerd Font 11";
 }
 
 window {
-    width:                      600px;
+    width:                      580px;
     transparency:               "real";
     background-color:           @bg;
     border:                     1px;
     border-color:               @border-col;
-    border-radius:              12px;
+    border-radius:              14px;
     location:                   center;
     anchor:                     center;
-    cursor:			pointer;
+    cursor:                     pointer;
+    x-offset:                   0px;
+    y-offset:                   -60px;
 }
 
 mainbox {
-    padding:                    24px;
-    /* 2. Keep the search bar visible even during errors */
-    children:                   [ "inputbar", "listview", "message" ];
+    padding:                    20px;
+    spacing:                    0px;
+    children:                   [ "inputbar", "mode-switcher", "listview", "message" ];
+    background-color:           transparent;
 }
 
 inputbar {
-    padding:                    12px;
-    spacing:                    12px;
-    children:                   [ "prompt", "entry" ];
+    padding:                    14px 16px;
+    spacing:                    10px;
+    children:                   [ "entry" ];
     border:                     0px 0px 1px 0px;
-    border-color: @border-col;
+    border-color:               @border-col;
+    background-color:           transparent;
+}
+
+prompt {
+    text-color:                 @accent;
+    vertical-align:             0.5;
+    font:                       "JetBrainsMono Nerd Font 13";
 }
 
 entry {
-    placeholder:                "Search...";
+    placeholder:                "󰍉  Search...";
     placeholder-color:          @fg-alt;
     vertical-align:             0.5;
+    text-color:                 @fg;
+    cursor:                     pointer;
+}
+
+mode-switcher {
+    spacing:                    0px;
+    margin:                     10px 0px 0px 0px;
+    border:                     0px 0px 1px 0px;
+    border-color:               @border-col;
+}
+
+button {
+    padding:                    8px 14px;
+    background-color:           transparent;
+    text-color:                 @fg-alt;
+    border-radius:              6px;
+    cursor:                     pointer;
+    font:                       "JetBrainsMono Nerd Font 10";
+}
+
+button selected {
+    background-color:           @selected-bg;
+    text-color:                 @accent;
 }
 
 listview {
     columns:                    1;
     lines:                      8;
-    spacing:                    0px; /* Flush look for selection */
-    margin:                     12px 0px 0px 0px;
+    spacing:                    2px;
+    margin:                     10px 0px 0px 0px;
     fixed-height:               false;
+    background-color:           transparent;
+    scrollbar:                  false;
 }
 
 element {
-    padding:                    12px;
-    background-color:           transparent; /* 3. No container background for unselected */
-    border-radius:              0px;         /* Reset radius */
-    spacing:                    15px;
-    cursor:			pointer;
+    padding:                    10px 12px;
+    background-color:           transparent;
+    border-radius:              8px;
+    spacing:                    12px;
+    cursor:                     pointer;
 }
 
-element selected {
+element normal normal {
+    background-color:           transparent;
+    text-color:                 @fg;
+}
+
+element normal urgent {
+    background-color:           transparent;
+    text-color:                 #f85149;
+}
+
+element normal active {
+    background-color:           transparent;
+    text-color:                 @accent;
+}
+
+element selected normal {
     background-color:           @selected-bg;
-    border-radius:              0px;         /* 4. No round corners for selected one */
     text-color:                 #ffffff;
 }
 
-/* 5. Graceful Error Display */
-error-message {
-    padding:                    15px;
-    border:                     1px;
-    border-color:               #ff555533;
-    background-color:           #ff555511;
-    text-color:                 #ff5555;
+element selected urgent {
+    background-color:           #f8514922;
+    text-color:                 #f85149;
 }
+
+element selected active {
+    background-color:           @selected-bg;
+    text-color:                 @accent;
+}
+
+element-icon {
+    size:                       22px;
+    vertical-align:             0.5;
+    cursor:                     inherit;
+}
+
+element-text {
+    vertical-align:             0.5;
+    cursor:                     inherit;
+    highlight:                  bold;
+}
+
+error-message {
+    padding:                    14px;
+    margin:                     10px 0px 0px 0px;
+    border:                     1px;
+    border-radius:              8px;
+    border-color:               #f8514933;
+    background-color:           #f8514911;
+    text-color:                 #f85149;
+}
+

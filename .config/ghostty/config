@@ -54,7 +54,7 @@ font-size = 12
 
 window-decoration = client
 # Transparency & Blur
-background-opacity = 0.9
+background-opacity = 0.7
 
 # Background Color (Override the theme to black)
 background = 0a0a0a
@@ -64,3 +64,4 @@ cursor-style = block
 
 # Mouse
 mouse-hide-while-typing = true
+maximize = true
