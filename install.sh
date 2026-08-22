@@ -142,6 +142,10 @@ try_install_one fastfetch || true
 $IS_TERMUX || try_install_one alacritty || true
 install_ghostty || true
 
+# nvim-treesitter parsers require a C compiler at first nvim launch
+command -v gcc >/dev/null 2>&1 || command -v cc >/dev/null 2>&1 || \
+  warn "no C compiler found: nvim treesitter parsers will not compile (install gcc/clang yourself)"
+
 if $PKGS_ONLY; then
   log "Packages done (--pkgs-only): skipping dotfiles deployment"
   exit 0
