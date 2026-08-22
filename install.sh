@@ -48,9 +48,9 @@ fi
 # ---------- package name maps ----------
 required_pkgs() {
   case "$PM" in
-    pacman)  echo "git curl wget unzip tar ripgrep fzf jq zsh tmux neovim stow tree-sitter" ;;
-    dnf)     echo "git curl wget unzip tar ripgrep fzf jq zsh tmux neovim stow tree-sitter" ;;
-    apt)     echo "git curl wget unzip tar ripgrep fzf jq zsh tmux neovim stow tree-sitter" ;;
+    pacman)  echo "git curl wget unzip tar ripgrep fzf jq zsh tmux neovim stow" ;;
+    dnf)     echo "git curl wget unzip tar ripgrep fzf jq zsh tmux neovim stow" ;;
+    apt)     echo "git curl wget unzip tar ripgrep fzf jq zsh tmux neovim stow" ;;
     zypper)  echo "git curl wget unzip tar ripgrep fzf jq zsh tmux neovim stow" ;;
     apk)     echo "git curl wget unzip tar ripgrep fzf jq zsh tmux neovim stow" ;;
     xbps)    echo "git curl wget unzip tar ripgrep fzf jq zsh tmux neovim stow" ;;
@@ -132,9 +132,14 @@ log "Installing required packages"
 install_pkgs $(required_pkgs)
 
 log "Installing extras (best-effort)"
-command -v tree-sitter >/dev/null 2>&1 || try_install_one tree-sitter
-try_install_one fastfetch
-$IS_TERMUX || try_install_one alacritty
+# tree-sitter CLI is needed by nvim-treesitter main branch; package name
+# differs per distro (arch/fedora/debian: tree-sitter-cli, else fallback)
+if ! command -v tree-sitter >/dev/null 2>&1; then
+  try_install_one tree-sitter-cli || true
+  command -v tree-sitter >/dev/null 2>&1 || try_install_one tree-sitter || true
+fi
+try_install_one fastfetch || true
+$IS_TERMUX || try_install_one alacritty || true
 install_ghostty
 
 if $PKGS_ONLY; then
