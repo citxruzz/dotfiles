@@ -140,7 +140,7 @@ if ! command -v tree-sitter >/dev/null 2>&1; then
 fi
 try_install_one fastfetch || true
 $IS_TERMUX || try_install_one alacritty || true
-install_ghostty
+install_ghostty || true
 
 if $PKGS_ONLY; then
   log "Packages done (--pkgs-only): skipping dotfiles deployment"
