@@ -168,3 +168,24 @@ alias ff='echo "\n\n" && pokeget random --hide-name | sed "s/^/    /" && echo ""
 eval "$(starship init zsh)"
 
 export QT_QPA_PLATFORMTHEME=qt6ct
+
+# >>> mamba initialize >>>
+# !! Contents within this block are managed by 'micromamba shell init' !!
+export MAMBA_EXE='/home/lemyn/.local/bin/micromamba';
+export MAMBA_ROOT_PREFIX='/home/lemyn/micromamba';
+__mamba_setup="$("$MAMBA_EXE" shell hook --shell zsh --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__mamba_setup"
+else
+    alias micromamba="$MAMBA_EXE"  # Fallback on help from micromamba activate
+fi
+unset __mamba_setup
+# <<< mamba initialize <<<
+
+
+# Added by Antigravity CLI installer
+export PATH="/home/lemyn/.local/bin:$PATH"
+
+# opencode
+export PATH=/home/lemyn/.opencode/bin:$PATH
+export PATH=$PATH:/usr/local/go/bin
